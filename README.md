@@ -9,8 +9,8 @@
 
 ## Running the application locally
 You can run the application with maven  : mvn spring-boot:run
-See [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
+See [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html)
 
 ## Running Integration tests
 
-- You can run the application with maven  : mvn test
+- You can run tests on the application with maven  : mvn test
