@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Include;
 import lombok.NoArgsConstructor;
 
 @Entity

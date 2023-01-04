@@ -1,16 +1,18 @@
 package org.softeam.kata.BankAccount.service.account;
 
+import static org.softeam.kata.BankAccount.constant.AccountConstants.ACCOUNT_NOT_FOUND;
+import static org.softeam.kata.BankAccount.constant.AccountConstants.CLIENT_NOT_FOUND;
+import static org.softeam.kata.BankAccount.constant.AccountConstants.NO_SUFFICIENT_CREDIT;
+
+import java.time.LocalDate;
+
 import org.softeam.kata.BankAccount.exceptions.CustomAccountException;
 import org.softeam.kata.BankAccount.models.Account;
 import org.softeam.kata.BankAccount.models.Transaction;
 import org.softeam.kata.BankAccount.models.TransactionType;
 import org.softeam.kata.BankAccount.repository.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import static org.softeam.kata.BankAccount.constant.AccountConstants.*;
-
-import java.time.LocalDate;;
+import org.springframework.stereotype.Service;;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -20,7 +22,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account depositMoneyToAccount(Account account, float amount) throws CustomAccountException {
-		Account resultAccount = accountRepository.findById(account.getId()).orElseThrow(()-> new CustomAccountException(ACCOUNT_NOT_FOUND));
+		Account resultAccount = accountRepository.findById(account.getId())
+				.orElseThrow(() -> new CustomAccountException(ACCOUNT_NOT_FOUND));
 		if (resultAccount != null) {
 			float newBalance = amount + resultAccount.getBalance();
 			addTransactionToAccount(amount, resultAccount, newBalance, TransactionType.DEPOSIT);
@@ -33,7 +36,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account withdrawMoneyFromAccount(Account account, float amount) throws CustomAccountException {
-		Account resultAccount = accountRepository.findById(account.getId()).orElseThrow(()-> new CustomAccountException(ACCOUNT_NOT_FOUND));
+		Account resultAccount = accountRepository.findById(account.getId())
+				.orElseThrow(() -> new CustomAccountException(ACCOUNT_NOT_FOUND));
 		if (resultAccount != null) {
 			float newBalance = resultAccount.getBalance() - amount;
 			if (newBalance < 0) {
@@ -47,7 +51,8 @@ public class AccountServiceImpl implements AccountService {
 
 	}
 
-	private void addTransactionToAccount(float amount, Account account, float balance, TransactionType transactionType) {
+	private void addTransactionToAccount(float amount, Account account, float balance,
+			TransactionType transactionType) {
 		Transaction transaction = new Transaction();
 		transaction.setAccount(account);
 		transaction.setAmount(amount);
@@ -61,7 +66,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String printStatement(Account account) throws CustomAccountException {
-		Account resultAccount = accountRepository.findById(account.getId()).orElseThrow(()-> new CustomAccountException(ACCOUNT_NOT_FOUND));
+		Account resultAccount = accountRepository.findById(account.getId())
+				.orElseThrow(() -> new CustomAccountException(ACCOUNT_NOT_FOUND));
 		return resultAccount.toString();
 	}
 

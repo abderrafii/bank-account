@@ -16,12 +16,13 @@ public class ClientServiceImpl implements ClientService {
 
 	@Autowired
 	ClientRepository clientRepository;
-	
+
 	@Override
 	public Client findClientById(Integer clientId) throws CustomAccountException {
-		return clientRepository.findById(clientId).orElseThrow(() -> new CustomAccountException(AccountConstants.CLIENT_NOT_FOUND));
+		return clientRepository.findById(clientId)
+				.orElseThrow(() -> new CustomAccountException(AccountConstants.CLIENT_NOT_FOUND));
 	}
-	
+
 	@Override
 	public Client createClient(String firstName, String lastName) {
 		Client client = new Client();
