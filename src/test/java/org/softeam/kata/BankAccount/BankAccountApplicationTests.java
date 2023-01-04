@@ -6,9 +6,6 @@ import org.softeam.kata.BankAccount.service.client.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import io.cucumber.spring.CucumberContextConfiguration;
-
-@CucumberContextConfiguration
 @SpringBootTest
 public class BankAccountApplicationTests {
 	@Autowired
@@ -16,6 +13,7 @@ public class BankAccountApplicationTests {
 
 	@Autowired
 	AccountService accountService;
+	
 	@Test
 	void contextLoads() {
 	}
